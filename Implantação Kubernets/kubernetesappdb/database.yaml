@@ -1,0 +1,29 @@
+## 1
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: database
+  name: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - image: marcony3000/tcc-db
+        name: tcc-db
+        resources: {}
+        env:
+        - name: MYSQL_DATABASE
+          value: "db_bancook"
+        - name: MYSQL_ROOT_PASSWORD
+          value: "root"
+status: {}

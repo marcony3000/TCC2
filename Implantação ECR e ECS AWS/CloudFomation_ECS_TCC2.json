@@ -1,0 +1,169 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "The template used to create an ECS Service from the ECS Console.",
+    "Parameters": {
+      "ECSClusterName": {
+        "Type": "String",
+        "Default": "marconi-tcc"
+      },
+      "ECSServiceName": {
+        "Type": "String",
+        "Default": "app"
+      },
+      "SecurityGroupIDs": {
+        "Type": "CommaDelimitedList",
+        "Default": "sg-07f8927867acae142"
+      },
+      "SubnetIDs": {
+        "Type": "CommaDelimitedList",
+        "Default": "subnet-0ef66155e862554dc,subnet-05f38e3d9d846c818,subnet-095e8bd832ca43f68"
+      },
+      "VpcID": {
+        "Type": "String",
+        "Default": "vpc-00ff4e5cbe7620e06"
+      },
+      "LoadBalancerName": {
+        "Type": "String",
+        "Default": "app-ecs"
+      }
+    },
+    "Resources": {
+      "ECSService": {
+        "Type": "AWS::ECS::Service",
+        "Properties": {
+          "Cluster": "marconi-tcc",
+          "CapacityProviderStrategy": [
+            {
+              "CapacityProvider": "FARGATE",
+              "Base": 0,
+              "Weight": 1
+            }
+          ],
+          "TaskDefinition": "arn:aws:ecs:us-east-1:239058675381:task-definition/app:1",
+          "ServiceName": "app",
+          "SchedulingStrategy": "REPLICA",
+          "DesiredCount": 1,
+          "LoadBalancers": [
+            {
+              "ContainerName": "app",
+              "ContainerPort": 80,
+              "LoadBalancerName": {
+                "Ref": "AWS::NoValue"
+              },
+              "TargetGroupArn": {
+                "Ref": "TargetGroup"
+              }
+            }
+          ],
+          "NetworkConfiguration": {
+            "AwsvpcConfiguration": {
+              "AssignPublicIp": "ENABLED",
+              "SecurityGroups": {
+                "Ref": "SecurityGroupIDs"
+              },
+              "Subnets": {
+                "Ref": "SubnetIDs"
+              }
+            }
+          },
+          "PlatformVersion": "LATEST",
+          "DeploymentConfiguration": {
+            "MaximumPercent": 200,
+            "MinimumHealthyPercent": 100,
+            "DeploymentCircuitBreaker": {
+              "Enable": true,
+              "Rollback": true
+            }
+          },
+          "DeploymentController": {
+            "Type": "ECS"
+          },
+          "ServiceConnectConfiguration": {
+            "Enabled": false
+          },
+          "Tags": [],
+          "EnableECSManagedTags": true
+        },
+        "DependsOn": [
+          "Listener"
+        ]
+      },
+      "LoadBalancer": {
+        "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+        "Properties": {
+          "Type": "application",
+          "Name": "app-ecs",
+          "SecurityGroups": {
+            "Ref": "SecurityGroupIDs"
+          },
+          "Subnets": {
+            "Ref": "SubnetIDs"
+          }
+        }
+      },
+      "TargetGroup": {
+        "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+        "Properties": {
+          "HealthCheckPath": "/",
+          "Name": "tg-ecs-app",
+          "Port": 80,
+          "Protocol": "HTTP",
+          "TargetType": "ip",
+          "HealthCheckProtocol": "HTTP",
+          "VpcId": {
+            "Ref": "VpcID"
+          }
+        }
+      },
+      "Listener": {
+        "Type": "AWS::ElasticLoadBalancingV2::Listener",
+        "Properties": {
+          "DefaultActions": [
+            {
+              "Type": "forward",
+              "TargetGroupArn": {
+                "Ref": "TargetGroup"
+              }
+            }
+          ],
+          "LoadBalancerArn": {
+            "Ref": "LoadBalancer"
+          },
+          "Port": 80,
+          "Protocol": "HTTP"
+        }
+      }
+    },
+    "Outputs": {
+      "ClusterName": {
+        "Description": "The cluster used to create the service.",
+        "Value": {
+          "Ref": "ECSClusterName"
+        }
+      },
+      "ECSService": {
+        "Description": "The created service.",
+        "Value": {
+          "Ref": "ECSService"
+        }
+      },
+      "LoadBalancer": {
+        "Description": "The created load balancer.",
+        "Value": {
+          "Ref": "LoadBalancer"
+        }
+      },
+      "Listener": {
+        "Description": "The created listener.",
+        "Value": {
+          "Ref": "Listener"
+        }
+      },
+      "TargetGroup": {
+        "Description": "The created target group.",
+        "Value": {
+          "Ref": "TargetGroup"
+        }
+      }
+    }
+  }

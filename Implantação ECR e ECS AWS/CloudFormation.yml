@@ -1,0 +1,91 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  DatabaseDeployment:
+    Type: "AWS::ECS::TaskDefinition"
+    Properties:
+      ContainerDefinitions:
+        - Name: "tcc-db"
+          Image: "marcony3000/tcc-db"
+          Environment:
+            - Name: "MYSQL_DATABASE"
+              Value: "db_bancook"
+            - Name: "MYSQL_ROOT_PASSWORD"
+              Value: "root"
+          Cpu: "256" # 0.25 de CPU
+          Memory: "512" # 0.5GB de memória
+      TaskRoleArn: "LabRole" # Adicione a função de tarefa apropriada aqui
+  DatabaseService:
+    Type: "AWS::ECS::Service"
+    Properties:
+      Cluster: "arn:aws:ecs:us-east-1:239058675381:cluster/marconi-tcc" # Adicione o ARN do seu cluster ECS aqui
+      DesiredCount: 1
+      TaskDefinition: !Ref DatabaseDeployment
+  AppDeployment:
+    Type: "AWS::ECS::TaskDefinition"
+    Properties:
+      ContainerDefinitions:
+        - Name: "app"
+          Image: "marcony3000/tcc-app"
+          Environment:
+            - Name: "ASPNETCORE_ENVIRONMENT"
+              Value: "Development"
+            - Name: "ASPNETCORE_URLS"
+              Value: "http://+:80"
+            - Name: "DATABASE_CONNECTION"
+              Value: "server=database; user=root; password=root; database=db_bancook"
+          Cpu: "256" # 0.25 de CPU
+          Memory: "512" # 0.5GB de memória
+      TaskRoleArn: "LabRole" # Adicione a função de tarefa apropriada aqui
+  AppService:
+    Type: "AWS::ECS::Service"
+    Properties:
+      Cluster: "arn:aws:ecs:us-east-1:239058675381:cluster/marconi-tcc" # Adicione o ARN do seu cluster ECS aqui
+      DesiredCount: 1
+      TaskDefinition: !Ref AppDeployment
+  PhpMyAdminDeployment:
+    Type: "AWS::ECS::TaskDefinition"
+    Properties:
+      ContainerDefinitions:
+        - Name: "phpmyadmin"
+          Image: "phpmyadmin/phpmyadmin"
+          Environment:
+            - Name: "PMA_HOST"
+              Value: "database"
+            - Name: "PMA_PORT"
+              Value: "3306"
+            - Name: "PMA_ARBITRARY"
+              Value: "1"
+          Cpu: "256" # 0.25 de CPU
+          Memory: "512" # 0.5GB de memória
+      TaskRoleArn: "LabRole" # Adicione a função de tarefa apropriada aqui
+  PhpMyAdminService:
+    Type: "AWS::ECS::Service"
+    Properties:
+      Cluster: "arn:aws:ecs:us-east-1:239058675381:cluster/marconi-tcc" # Adicione o ARN do seu cluster ECS aqui
+      DesiredCount: 1
+      TaskDefinition: !Ref PhpMyAdminDeployment
+
+
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: "myLoadBalancer"
+      Subnets:
+        - "YOUR_SUBNET_ID_1"
+        - "YOUR_SUBNET_ID_2"
+      SecurityGroups:
+        - "YOUR_SECURITY_GROUP_ID"
+      Type: "application"
+      Tags:
+        - Key: Name
+          Value: "MyLoadBalancer"
+      
+  LoadBalancerListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+        - Type: "forward"
+          TargetGroupArn: "YOUR_TARGET_GROUP_ARN"

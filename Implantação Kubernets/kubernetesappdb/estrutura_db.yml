@@ -1,0 +1,465 @@
+%YAML 1.1
+---
+# db_bancook.Clientes
+-
+  Id: 1
+  Ativo: 1
+  DataCadastro: "2022-01-27 18:39:11.791234"
+-
+  Id: 2
+  Ativo: 1
+  DataCadastro: "2022-01-27 18:43:51.674966"
+-
+  Id: 3
+  Ativo: 1
+  DataCadastro: "2022-01-27 19:02:47.915397"
+-
+  Id: 4
+  Ativo: 1
+  DataCadastro: "2022-01-27 21:48:12.443783"
+-
+  Id: 5
+  Ativo: 1
+  DataCadastro: "2022-01-27 21:50:54.558005"
+-
+  Id: 6
+  Ativo: 1
+  DataCadastro: "2022-01-27 21:52:00.270588"
+-
+  Id: 7
+  Ativo: 1
+  DataCadastro: "2022-01-27 21:52:50.653048"
+-
+  Id: 8
+  Ativo: 1
+  DataCadastro: "2022-01-27 22:11:32.367258"
+-
+  Id: 9
+  Ativo: 1
+  DataCadastro: "2022-01-27 22:50:16.207528"
+-
+  Id: 10
+  Ativo: 1
+  DataCadastro: "2022-02-05 00:17:06.624346"
+-
+  Id: 11
+  Ativo: 1
+  DataCadastro: "2022-02-07 20:44:02.573471"
+-
+  Id: 12
+  Ativo: 1
+  DataCadastro: "2022-02-07 21:18:06.235522"
+-
+  Id: 13
+  Ativo: 1
+  DataCadastro: "2022-02-07 21:21:27.312393"
+# db_bancook.ContasBancarias
+-
+  Id: 1
+  ClienteId: 1
+  Agencia: 1
+  Numero: 7036
+  Digito: 7
+  ValorSaldo: 800
+  Senha: 123456
+-
+  Id: 2
+  ClienteId: 2
+  Agencia: 1
+  Numero: 2384
+  Digito: 2
+  ValorSaldo: 800
+  Senha: 123456
+-
+  Id: 3
+  ClienteId: 3
+  Agencia: 1
+  Numero: 1397
+  Digito: 2
+  ValorSaldo: 100
+  Senha: 123456
+-
+  Id: 4
+  ClienteId: 4
+  Agencia: 1
+  Numero: 3789
+  Digito: 5
+  ValorSaldo: 0
+  Senha: 123456
+-
+  Id: 5
+  ClienteId: 5
+  Agencia: 1
+  Numero: 1401
+  Digito: 0
+  ValorSaldo: 0
+  Senha: 12345
+-
+  Id: 6
+  ClienteId: 6
+  Agencia: 1
+  Numero: 2729
+  Digito: 8
+  ValorSaldo: 0
+  Senha: 54321
+-
+  Id: 7
+  ClienteId: 7
+  Agencia: 1
+  Numero: 4585
+  Digito: 1
+  ValorSaldo: 0
+  Senha: 9876
+-
+  Id: 8
+  ClienteId: 8
+  Agencia: 1
+  Numero: 7196
+  Digito: 0
+  ValorSaldo: 0
+  Senha: 123456
+-
+  Id: 9
+  ClienteId: 9
+  Agencia: 1
+  Numero: 8937
+  Digito: 8
+  ValorSaldo: 0
+  Senha: 987654
+-
+  Id: 10
+  ClienteId: 10
+  Agencia: 1
+  Numero: 2920
+  Digito: 2
+  ValorSaldo: 0
+  Senha: 12345678
+-
+  Id: 11
+  ClienteId: 11
+  Agencia: 1
+  Numero: 8334
+  Digito: 2
+  ValorSaldo: 0
+  Senha: 123456
+-
+  Id: 12
+  ClienteId: 12
+  Agencia: 1
+  Numero: 4443
+  Digito: 1
+  ValorSaldo: 700
+  Senha: 123456
+-
+  Id: 13
+  ClienteId: 13
+  Agencia: 1
+  Numero: 9326
+  Digito: 2
+  ValorSaldo: 1101
+  Senha: 123456
+# db_bancook.Enderecos
+-
+  Id: 1
+  Logradouro: "Casa 01"
+  Complemento: "Casa Branca"
+  Bairro: "Centro"
+  Cidade: "Lagarto"
+  EstadoUf: "SE"
+  Cep: 49400000
+  Numero: 0
+-
+  Id: 2
+  Logradouro: "Casa b"
+  Complemento: "Casa Azul"
+  Bairro: "Centro"
+  Cidade: "Aracaju"
+  EstadoUf: "SE"
+  Cep: 49060000
+  Numero: 0
+-
+  Id: 3
+  Logradouro: "Casa c"
+  Complemento: "Casa preta"
+  Bairro: "centro"
+  Cidade: "Lagarto"
+  EstadoUf: "SE"
+  Cep: 49400000
+  Numero: 0
+-
+  Id: 4
+  Logradouro: "casa teste 0001"
+  Complemento: "casa"
+  Bairro: "centro"
+  Cidade: "Lagarto"
+  EstadoUf: "SE"
+  Cep: 49400000
+  Numero: 0
+-
+  Id: 5
+  Logradouro: "casa teste 0002"
+  Complemento: "casa azul"
+  Bairro: "cebtro"
+  Cidade: "Aracaju"
+  EstadoUf: "SE"
+  Cep: 49060000
+  Numero: 0
+-
+  Id: 6
+  Logradouro: "casa teste"
+  Complemento: "teste casa"
+  Bairro: "centro"
+  Cidade: "Salgado"
+  EstadoUf: "SE"
+  Cep: 49060000
+  Numero: 0
+-
+  Id: 7
+  Logradouro: "casa cpf"
+  Complemento: "casa"
+  Bairro: "centro"
+  Cidade: "lagarto"
+  EstadoUf: "SE"
+  Cep: 49400000
+  Numero: 0
+-
+  Id: 8
+  Logradouro: "casa teste"
+  Complemento: "casa"
+  Bairro: "centro"
+  Cidade: "Aracaju"
+  EstadoUf: "SE"
+  Cep: 49000000
+  Numero: 234
+-
+  Id: 9
+  Logradouro: "casa"
+  Complemento: "perto de casa"
+  Bairro: "centro"
+  Cidade: "Aracaju"
+  EstadoUf: "SE"
+  Cep: 49060000
+  Numero: 123
+-
+  Id: 10
+  Logradouro: "casa 01"
+  Complemento: "casa"
+  Bairro: "centro"
+  Cidade: "Lagarto"
+  EstadoUf: "SE"
+  Cep: "49400-000"
+  Numero: 1
+-
+  Id: 11
+  Logradouro: "casa cadastro"
+  Complemento: "casa"
+  Bairro: "centro"
+  Cidade: "Lagarto"
+  EstadoUf: "SE"
+  Cep: "49400-000"
+  Numero: 2
+-
+  Id: 12
+  Logradouro: "Casa 0001"
+  Complemento: "Casa"
+  Bairro: "Cento"
+  Cidade: "Lagarto"
+  EstadoUf: "SE"
+  Cep: "49400-000"
+  Numero: 23
+-
+  Id: 13
+  Logradouro: "Rua J"
+  Complemento: "Loja"
+  Bairro: "Centro"
+  Cidade: "Aracaju"
+  EstadoUf: "SE"
+  Cep: "49010-030"
+  Numero: 234
+# db_bancook.Movimentos
+-
+  Id: 5
+  ContaBancariaId: 1
+  TipoMovimento: 1
+  Valor: 1000
+  DataCadastro: "2022-02-07 19:26:43"
+  Descricao: "Depósito recebido de 1000,00"
+-
+  Id: 6
+  ContaBancariaId: 2
+  TipoMovimento: 1
+  Valor: 100
+  DataCadastro: "2022-02-07 19:27:39"
+  Descricao: "Transferência recebida de 7036 Dv 7 Agência 1 Valor 100,00"
+-
+  Id: 7
+  ContaBancariaId: 1
+  TipoMovimento: 1
+  Valor: 100
+  DataCadastro: "2022-02-07 19:27:39"
+  Descricao: "Transferência realizada para 2384 Dv 2 Agência 1 Valor 100,00"
+-
+  Id: 8
+  ContaBancariaId: 3
+  TipoMovimento: 1
+  Valor: 100
+  DataCadastro: "2022-02-07 19:28:07"
+  Descricao: "Transferência recebida de 7036 Dv 7 Agência 1 Valor 100,00"
+-
+  Id: 9
+  ContaBancariaId: 1
+  TipoMovimento: 1
+  Valor: 100
+  DataCadastro: "2022-02-07 19:28:07"
+  Descricao: "Transferência realizada para 1397 Dv 2 Agência 1 Valor 100,00"
+-
+  Id: 10
+  ContaBancariaId: 2
+  TipoMovimento: 1
+  Valor: 500
+  DataCadastro: "2022-02-07 19:28:25"
+  Descricao: "Depósito recebido de 500,00"
+-
+  Id: 11
+  ContaBancariaId: 2
+  TipoMovimento: 1
+  Valor: 200
+  DataCadastro: "2022-02-07 19:29:09"
+  Descricao: "Depósito recebido de 200,00"
+-
+  Id: 12
+  ContaBancariaId: 12
+  TipoMovimento: 1
+  Valor: 1000
+  DataCadastro: "2022-02-07 21:19:44"
+  Descricao: "Depósito recebido de 1000,00"
+-
+  Id: 13
+  ContaBancariaId: 13
+  TipoMovimento: 1
+  Valor: 300
+  DataCadastro: "2022-02-07 21:22:18"
+  Descricao: "Transferência recebida de 4443 Dv 1 Agência 1 Valor 300,00"
+-
+  Id: 14
+  ContaBancariaId: 12
+  TipoMovimento: 1
+  Valor: 300
+  DataCadastro: "2022-02-07 21:22:18"
+  Descricao: "Transferência realizada para 9326 Dv 2 Agência 1 Valor 300,00"
+-
+  Id: 15
+  ContaBancariaId: 13
+  TipoMovimento: 1
+  Valor: 801
+  DataCadastro: "2022-02-07 21:23:13"
+  Descricao: "Depósito recebido de 800,50"
+# db_bancook.Pessoas
+-
+  Id: 1
+  Nome: "Marconi PF"
+  Documento: 02542584508
+  Tipo: "F"
+  DataNascimento: "1987-01-10 00:00:00"
+-
+  Id: 2
+  Nome: "Marconi PJ"
+  Documento: 32853772000169
+  Tipo: "J"
+  DataNascimento: "2000-01-01 00:00:00"
+-
+  Id: 3
+  Nome: "Marconi Teste 02"
+  Documento: 2542584509
+  Tipo: "F"
+  DataNascimento: "1987-01-10 00:00:00"
+-
+  Id: 4
+  Nome: "Teste 0001 PF"
+  Documento: 2542584508
+  Tipo: "F"
+  DataNascimento: "1999-01-01 00:00:00"
+-
+  Id: 5
+  Nome: "Teste 0002 PJ"
+  Documento: 32853772000162
+  Tipo: "J"
+  DataNascimento: "1995-01-01 00:00:00"
+-
+  Id: 6
+  Nome: "teste 00004"
+  Documento: 32853772000165
+  Tipo: "J"
+  DataNascimento: "1996-01-01 00:00:00"
+-
+  Id: 7
+  Nome: "teste cpf errado"
+  Documento: 2542584500
+  Tipo: "F"
+  DataNascimento: "1987-01-01 00:00:00"
+-
+  Id: 8
+  Nome: "Icaro Teste"
+  Documento: 1234567809
+  Tipo: "F"
+  DataNascimento: "2000-01-01 00:00:00"
+-
+  Id: 9
+  Nome: "Teste Numero conta"
+  Documento: 3605278608
+  Tipo: "F"
+  DataNascimento: "2000-01-01 00:00:00"
+-
+  Id: 10
+  Nome: "Conta PJ Teste Mask"
+  Documento: 85880054000141
+  Tipo: "J"
+  DataNascimento: "0001-01-01 00:00:00"
+-
+  Id: 11
+  Nome: "tese cadastro 01"
+  Documento: 2234578901
+  Tipo: "F"
+  DataNascimento: "1967-01-10 00:00:00"
+-
+  Id: 12
+  Nome: "Marconi Oliveira"
+  Documento: 73676162005
+  Tipo: "F"
+  DataNascimento: "1987-01-10 00:00:00"
+-
+  Id: 13
+  Nome: "Marconi Pessoa J"
+  Documento: 32853772000176
+  Tipo: "J"
+  DataNascimento: "1957-02-10 00:00:00"
+# db_bancook.sqlite_sequence
+-
+  name: "Enderecos"
+  seq: 13
+-
+  name: "Pessoas"
+  seq: 13
+-
+  name: "ContasBancarias"
+  seq: 13
+-
+  name: "Movimentos"
+  seq: 15
+# db_bancook.__EFMigrationsHistory
+-
+  MigrationId: "20220127213248_PrimeiraMigration"
+  ProductVersion: "3.1.22"
+-
+  MigrationId: "20220127220105_AddContaBancariaSenha"
+  ProductVersion: "3.1.22"
+-
+  MigrationId: "20220128010812_AddEnderecoNumero"
+  ProductVersion: "3.1.22"
+-
+  MigrationId: "20220207213747_AddMovimento"
+  ProductVersion: "3.1.22"
+-
+  MigrationId: "20220207214056_AddMovimentoDescricao"
+  ProductVersion: "3.1.22"
+...

@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  DatabaseDeployment:
+    Type: "AWS::ECS::TaskDefinition"
+    Properties:
+      ContainerDefinitions:
+        - Name: "tcc-db"
+          Image: "marcony3000/tcc-db"
+          Environment:
+            - Name: "MYSQL_DATABASE"
+              Value: "db_bancook"
+            - Name: "MYSQL_ROOT_PASSWORD"
+              Value: "root"
+      TaskRoleArn: "YOUR_TASK_ROLE_ARN_HERE" # Adicione a função de tarefa apropriada aqui
+  DatabaseService:
+    Type: "AWS::ECS::Service"
+    Properties:
+      Cluster: "YOUR_CLUSTER_ARN_HERE" # Adicione o ARN do seu cluster ECS aqui
+      DesiredCount: 1
+      TaskDefinition: !Ref DatabaseDeployment
+  AppDeployment:
+    Type: "AWS::ECS::TaskDefinition"
+    Properties:
+      ContainerDefinitions:
+        - Name: "app"
+          Image: "marcony3000/tcc-app"
+          Environment:
+            - Name: "ASPNETCORE_ENVIRONMENT"
+              Value: "Development"
+            - Name: "ASPNETCORE_URLS"
+              Value: "http://+:80"
+            - Name: "DATABASE_CONNECTION"
+              Value: "server=database; user=root; password=root; database=db_bancook"
+      TaskRoleArn: "YOUR_TASK_ROLE_ARN_HERE" # Adicione a função de tarefa apropriada aqui
+  AppService:
+    Type: "AWS::ECS::Service"
+    Properties:
+      Cluster: "YOUR_CLUSTER_ARN_HERE" # Adicione o ARN do seu cluster ECS aqui
+      DesiredCount: 1
+      TaskDefinition: !Ref AppDeployment
+  PhpMyAdminDeployment:
+    Type: "AWS::ECS::TaskDefinition"
+    Properties:
+      ContainerDefinitions:
+        - Name: "phpmyadmin"
+          Image: "phpmyadmin/phpmyadmin"
+          Environment:
+            - Name: "PMA_HOST"
+              Value: "database"
+            - Name: "PMA_PORT"
+              Value: "3306"
+            - Name: "PMA_ARBITRARY"
+              Value: "1"
+      TaskRoleArn: "YOUR_TASK_ROLE_ARN_HERE" # Adicione a função de tarefa apropriada aqui
+  PhpMyAdminService:
+    Type: "AWS::ECS::Service"
+    Properties:
+      Cluster: "YOUR_CLUSTER_ARN_HERE" # Adicione o ARN do seu cluster ECS aqui
+      DesiredCount: 1
+      TaskDefinition: !Ref PhpMyAdminDeployment

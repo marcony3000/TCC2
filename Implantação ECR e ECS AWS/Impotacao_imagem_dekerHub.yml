@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  TaskExecutionRole:
+    Type: String
+    Description: The ARN of the task execution role
+
+Resources:
+  ECRRepository:
+    Type: 'AWS::ECR::Repository'
+    Properties:
+      RepositoryName: 'tcc-db'
+
+  TaskDefinition:
+    Type: 'AWS::ECS::TaskDefinition'
+    Properties:
+      RequiresCompatibilities:
+        - FARGATE
+      ExecutionRoleArn: !Ref TaskExecutionRole
+      ContainerDefinitions:
+        - Name: 'tcc-db'
+          Image: 'marcony3000/tcc-db:latest'
+          Memory: 512
+          Cpu: 256
+
+  LabRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: 'LabRole'
+      RoleArn: 'arn:aws:iam::239058675381:role/LabRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy'
+        - 'arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly'

@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  DatabaseDeployment:
+    Type: "AWS::ECS::TaskDefinition"
+    Properties:
+      ContainerDefinitions:
+        - Name: "tcc-db"
+          Image: "marcony3000/tcc-db"
+          Environment:
+            - Name: "MYSQL_DATABASE"
+              Value: "db_bancook"
+            - Name: "MYSQL_ROOT_PASSWORD"
+              Value: "root"
+          Cpu: "256" # 0.25 de CPU
+          Memory: "512" # 0.5GB de memória
+      TaskRoleArn: "LabRole" # Adicione a função de tarefa apropriada aqui
+  DatabaseService:
+    Type: "AWS::ECS::Service"
+    Properties:
+      Cluster: "arn:aws:ecs:us-east-1:239058675381:cluster/marconi-tcc" # Adicione o ARN do seu cluster ECS aqui
+      DesiredCount: 1
+      TaskDefinition: !Ref DatabaseDeployment

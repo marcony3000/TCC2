@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  app:
+    image: bancook:latest
+    container_name: app
+    links:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - DATABASE_CONNECTION=server=db; user=root; password=root; database=db_bancook
+    ports:
+      - 60951:80
+      - 60952:443
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    #ports:
+    #  - 80
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=db_bancook
+      - MYSQL_ROOT_PASSWORD=root
+      #- MYSQL_USER: db_user
+      #- MYSQL_PASSWORD: db_user_pass
+    ports:
+      - '3306:3306'
+    volumes:
+      - db:/var/lib/mysql
+      #- ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+
+volumes:
+  db:
+    driver: local
