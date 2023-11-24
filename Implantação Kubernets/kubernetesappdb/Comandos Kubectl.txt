@@ -1,9 +1,9 @@
 Configurar o kubectl para acessar o cluster (talves tenha que instalar o kubectl)
 
-aws eks update-kubeconfig --name Marconi
+para acesso ao EKS na aws
+aws eks update-kubeconfig --name Nome 
 
-
-
+-----------------------------------------------------------------------------------
 
 comandos no kubectl
 
@@ -12,32 +12,26 @@ Deploy das imagens e undeploy
 
 Exmplo
 
-kubectl apply -f .\app.yaml
-
-kubectl delete -f .\app.yaml
-
+- Para subir o container com o serviço
 kubectl apply -f .\app-svc.yaml
 
+- Para destruir o container com o serviço
 kubectl delete -f .\app-svc.yaml
 
-kubectl apply -f .\database.yaml  
-
-kubectl delete -f .\database.yaml 
-
+- Para subir o container com o serviço
 kubectl apply -f .\database-svc.yaml
 
+- Para destruir o container com o serviço
 kubectl delete -f .\database-svc.yaml     
 
-kubectl apply -f .\phpmyadmin.yaml  
-
-kubectl delete -f .\phpmyadmin.yaml 
-
+- Para subir o container com o serviço
 kubectl apply -f .\phpmyadmin-svc.yaml
 
+- Para destruir o container com o serviço
 kubectl delete -f .\phpmyadmin-svc.yaml   
 
 
-Configurar a porta do container na máquina  (Na Máquina local)
+Configurar a porta do container kubernets em máquina LOCAL
 
 kubectl port-forward service/phpmyadmin 81:80
 

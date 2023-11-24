@@ -16,3 +16,37 @@ spec:
   type: ClusterIP
 status:
   loadBalancer: {}
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: phpmyadmin
+  name: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+      - image: phpmyadmin/phpmyadmin
+        name: phpmyadmin
+        resources: {}
+        env:
+        - name: PMA_HOST
+          value: "database"
+        - name: PMA_PORT
+          value: "3306"
+        - name: PMA_ARBITRARY
+          value: "1"
+status: {}
