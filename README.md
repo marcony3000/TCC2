@@ -1,5 +1,5 @@
-# TCC2
-Repositório de git usado para armazenas os códigos do meu trabalho de conclusão de curso.
+# TCC2 Marconi
+# Repositório de git usado para armazenas os códigos do meu trabalho de conclusão de curso.
 
 A migração de uma aplicação MVC web .NET Core com banco de dados SQLite para a nuvem utilizando containers Kubernetes, fargate com conversão de banco de dados SQLite para RDS MySQL. 
 
